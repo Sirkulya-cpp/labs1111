@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+	<title>Link Shortener</title>
+	<style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to right bottom, #9600FF, #AEBAF8);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: center;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+            font-size: 25px;
+        }
+
+        input[type="text"] {
+            width: 400px;
+            padding: 10px;
+            font-size: 16px;
+	        display: block;
+	        margin: 16px;
+        }
+
+        button[type="submit"] {
+            margin: 16px; /* Added margin to create space between input and button */
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #9600FF;
+            color: #FFFFFF;
+            font-weight: 550;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+	        display: inline;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #9600FF;
+        }
+
+	</style>
+
+</head>
+<body>
+<div class="container">
+	<h1>Link Shortener Authenfication</h1>
+	<form action="/api/login" method="POST">
+		<div>
+			<label class="form-label" style="text-align: center;">
+				Log In or Sign Up, please
+			</label>
+			<input type="text" name="login" id="login" placeholder="Login">
+			<input type="text" name="password" id="password" placeholder="Password">
+			<button type="submit" name="action" id="login_button" value="login">Log In</button>
+			<button type="submit" name="action" id="register_button" value="signup">Sign Up</button>
+		</div>
+	</form>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+	<title>Link Shortener</title>
+	<style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to right bottom, #9600FF, #AEBAF8);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: center;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+            font-size: 25px;
+        }
+
+        input[type="text"] {
+	        margin: 16px;
+            width: 400px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        div[type="submit"] {
+            margin: 16px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #9600FF;
+            color: #FFFFFF;
+            font-weight: 550;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        div[type="submit"]:hover {
+            background-color: #9600FF;
+        }
+
+        #shortUrlContainer {
+            /*margin-top: 20px;*/
+            text-align: center;
+        }
+
+        input {
+            width: 500px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #FFFFFF;
+            border: 1px solid #9600FF;
+            /*cursor: not-allowed;*/
+        }
+
+	</style>
+
+</head>
+<body>
+<div class="container">
+	<h1>Link Shortener</h1>
+	<div>
+		<label class="form-label" for="long_url" style="text-align: center;">
+			Enter the URL:
+		</label>
+		<form>
+			<input type="text" name="long_url" id="long_url" required onkeydown="if (event.keyCode === 13) sendRequest()">
+			<div type="submit" onclick="sendRequest()">
+				Shorten
+			</div>
+		</form>
+	</div>
+
+	<div id="shortUrlContainer">
+		<label for="short_url">
+			Shortened URL:
+		</label>
+		<form style="margin-top: 2px;">
+			<input type="text" name="short_url" id="short_url" readonly>
+			<div type="submit" id="copy_button" onclick="copyLink()">
+				#Copy#
+			</div>
+		</form>
+	</div>
+</div>
+
+<script>
+    function sendRequest()
+    {
+
+        var long_url = document.getElementById("long_url").value;
+
+        fetch('http://localhost/link_shortener/api/shorten_url', {
+            method: 'POST',
+            body: JSON.stringify({long_url: long_url}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Відповідь від сервера:', data);
+                //var json = JSON.parse(data);
+                document.getElementById("short_url").value = data["message"];
+            })
+            .catch(error => {
+                console.error('Помилка при виконанні запиту:', error);
+            });
+    }
+
+    function copyLink()
+    {
+		// Get the text field
+	    var copyText = document.getElementById("short_url");
+        var copyButton = document.getElementById("copy_button");
+
+	    // Select the text field
+	    copyText.select();
+	    copyText.setSelectionRange(0, 99999); // For mobile devices
+
+	    // Copy the text inside the text field
+	    navigator.clipboard.writeText(copyText.value);
+        copyButton.innerHTML = "Copied!";
+    }
+</script>
+</body>
+</html>
