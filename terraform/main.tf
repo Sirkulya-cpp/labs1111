@@ -1,6 +1,6 @@
 locals {
   project_name        = "Terraform_Laba_2"
-  security_group_name = "LabES2-security-group"
+  security_group_name = "launch-wizard-1"
   instance_name       = "LabES2"
   ubuntu_ami          = "ami-0faab6bdbac9486fb"
   region              = "eu-north-1"
@@ -17,7 +17,7 @@ resource "aws_instance" "LabES2" {
   ami             = local.ubuntu_ami
   instance_type   = "t2.micro"
   key_name        = aws_key_pair.KeysForLAb_keys.key_name
-  security_groups = [aws_security_group.local.security_group_name.name]
+  security_groups = [aws_security_group.launch-wizard-1.name]
   user_data       = file("./init.sh")
   tags = {
     Name    = local.instance_name,
