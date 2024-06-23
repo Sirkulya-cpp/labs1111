@@ -1,3 +1,13 @@
+locals {
+  project_name        = "Terraform_Laba_2"
+  security_group_name = "LabES2-security-group"
+  instance_name       = "LabES2"
+  ubuntu_ami          = "ami-0faab6bdbac9486fb"
+  region              = "eu-north-1"
+  key_pair_name       = "KeysForLAb"
+  author              = "Sirkulya"
+}
+
 provider "aws" {
   region = "local.region"  
 }
