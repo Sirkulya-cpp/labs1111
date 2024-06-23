@@ -2,7 +2,7 @@ locals {
   project_name        = "Terraform_Laba_2"
   security_group_name = "launch-wizard-2"
   instance_name       = "LabES2"
-  ubuntu_ami          = "ami-0faab6bdbac9486fb"
+  ubuntu_ami          = "ami-0705384c0b33c194c"
   region              = "eu-north-1"
   key_pair_name       = "KeysForLAbs"
   author              = "Sirkulya"
