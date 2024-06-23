@@ -16,7 +16,7 @@ provider "aws" {
 resource "aws_instance" "LabES2" {
   ami             = local.ubuntu_ami
   instance_type   = "t2.micro"
-  key_name        = aws_key_pair.KeysForLAb_keys.key_name
+  key_name        = aws_key_pair.KeysForLAb.key_name
   security_groups = [aws_security_group.launch-wizard-1.name]
   user_data       = file("./init.sh")
   tags = {
