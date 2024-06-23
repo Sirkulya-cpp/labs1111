@@ -9,7 +9,7 @@ locals {
 }
 
 provider "aws" {
-  region = "local.region"  
+  region = local.region 
 }
 
 
