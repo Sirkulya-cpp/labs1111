@@ -1,10 +1,10 @@
 locals {
   project_name        = "Terraform_Laba_2"
-  security_group_name = "launch-wizard-1"
+  security_group_name = "launch-wizard-2"
   instance_name       = "LabES2"
   ubuntu_ami          = "ami-0faab6bdbac9486fb"
   region              = "eu-north-1"
-  key_pair_name       = "KeysForLAb"
+  key_pair_name       = "KeysForLAbs"
   author              = "Sirkulya"
 }
 
@@ -16,8 +16,8 @@ provider "aws" {
 resource "aws_instance" "LabES2" {
   ami             = local.ubuntu_ami
   instance_type   = "t2.micro"
-  key_name        = aws_key_pair.KeysForLAb.key_name
-  security_groups = [aws_security_group.launch-wizard-1.name]
+  key_name        = aws_key_pair.KeysForLAbs.key_name
+  security_groups = [aws_security_group.launch-wizard-2.name]
   user_data       = file("./init.sh")
   tags = {
     Name    = local.instance_name,
@@ -27,7 +27,7 @@ resource "aws_instance" "LabES2" {
 
 }
 
-resource "aws_security_group" "launch-wizard-1" {
+resource "aws_security_group" "launch-wizard-2" {
   name = local.security_group_name
 
   ingress{
@@ -51,7 +51,7 @@ resource "aws_security_group" "launch-wizard-1" {
   }
 }
 
-resource "aws_key_pair" "KeysForLAb" {
+resource "aws_key_pair" "KeysForLAbs" {
   key_name   = local.key_pair_name
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCLgqq0rj1FHSNeT7wOrPgd27V0HCjnLGSec999n1qTg4M/7KPvNnF/KwXOGMLMeE/clHSs2j7eltwlHLnbIrtS7SHpjf16A6u4VlNbGwTpzQDRVlUZpNy2jCRPiEOVmKa5J238hTG6a5Bh6Rya4GfwxInq3e/Vxpb4KexG/7yzhqz9i90W9OY+cWDyBRKRtxwYaqd5TL6BqRkBKsmXNgkNgr1uOaVmvtTdTAwEZl2FjE4PTzcarJ/Tp85PDSbgvr9wpcNigHYBWGAZfeU32p7qaMAmhYqIA6mT9TwRL9tRS7d1RmhTHzqEYV0NdBOD56t1IYpEjcZkhv8+CBmtPqXl"
   tags = {
