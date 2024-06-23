@@ -51,7 +51,7 @@ resource "aws_security_group" "LabES2" {
 }
 
 resource "aws_key_pair" "KeysForLAb" {
-  key_name = local.aws_key_pair_name
+  key_name   = local.key_pair_name
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCLgqq0rj1FHSNeT7wOrPgd27V0HCjnLGSec999n1qTg4M/7KPvNnF/KwXOGMLMeE/clHSs2j7eltwlHLnbIrtS7SHpjf16A6u4VlNbGwTpzQDRVlUZpNy2jCRPiEOVmKa5J238hTG6a5Bh6Rya4GfwxInq3e/Vxpb4KexG/7yzhqz9i90W9OY+cWDyBRKRtxwYaqd5TL6BqRkBKsmXNgkNgr1uOaVmvtTdTAwEZl2FjE4PTzcarJ/Tp85PDSbgvr9wpcNigHYBWGAZfeU32p7qaMAmhYqIA6mT9TwRL9tRS7d1RmhTHzqEYV0NdBOD56t1IYpEjcZkhv8+CBmtPqXl"
   tags = {
     Name    = local.key_pair_name,
