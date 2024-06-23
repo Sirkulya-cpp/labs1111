@@ -11,12 +11,13 @@ locals {
 provider "aws" {
   region = "local.region"  
 }
- 
+
+
 resource "aws_instance" "LabES2" {
   ami             = local.ubuntu_ami
   instance_type   = "t2.micro"
   key_name        = aws_key_pair.KeysForLAb_keys.key_name
-  security_groups = [aws_security_group.LabES2-sg.name]
+  security_groups = [aws_security_group.local.security_group_name.name]
   user_data       = file("./init.sh")
   tags = {
     Name    = local.instance_name,
@@ -26,7 +27,7 @@ resource "aws_instance" "LabES2" {
 
 }
 
-resource "aws_security_group" "LabES2" {
+resource "aws_security_group" "launch-wizard-1" {
   name = local.security_group_name
 
   ingress{
